@@ -21,7 +21,7 @@ interface ITodoEdit {
 // }
 //export default TodoEdit;
 const TodoEdit: React.FC<ITodoEdit> = ({ handleSave, todo }) => {
-    const [newText, setnewText] = useState("");
+    const [newText, setnewText] = useState(todo.text);
     function onEditSubmit(e: React.FormEvent<HTMLFormElement>, newText: string, id: Number) {
         e.preventDefault();
         handleSave(newText, id)

@@ -4,6 +4,7 @@ import { ITodo } from "./types";
 
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
+import "./App.css"
 
 function App() {
   // const [name, setName] = useState("ram");
@@ -14,6 +15,7 @@ function App() {
       text: str,
       id: new Date().getTime(),
       isEdit: false,
+      isDone: false,
     };
     setTodos((prev) => [...prev, obj]);
   }
@@ -44,12 +46,28 @@ function App() {
     }
     setTodos(updatedtodos);
   }
+  function onCheck(id: Number, type: string) {
+    console.log(id);
+    const Checktodos = [...todos]
+    const indextoCheck = todos.findIndex((t) => t.id == id);
+
+    if (indextoCheck !== -1) {
+      if (type === "done") Checktodos[indextoCheck]["isDone"] = true;
+      else Checktodos[indextoCheck]["isDone"] = false;
+    }
+    // const Checktodos = [...todos]
+    // Checktodos[indextoCheck] = {
+    //   ...Checktodos[indextoCheck],
+    //   isDone: true,
+    // }
+    setTodos(Checktodos);
+  }
 
   return (
     <div>
       <h1>my todos</h1>
       <AddTodo onTodoAdd={onTodoAdd} />
-      <TodoList todos={todos} extraCss="text-bold" onDelete={onDelete} onEdit={onEdit} handleSave={onSave} />
+      <TodoList todos={todos} extraCss="text-bold" onDelete={onDelete} onEdit={onEdit} handleSave={onSave} onCheck={onCheck} />
     </div>
   );
 }

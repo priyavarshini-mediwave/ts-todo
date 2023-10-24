@@ -2,6 +2,7 @@ interface ITodo {
   id: Number;
   text: string;
   isEdit: boolean;
+  isDone: boolean;
 }
 interface IAddTodo {
   onTodoAdd: (str: string) => void;

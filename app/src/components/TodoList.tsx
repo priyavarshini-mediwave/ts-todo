@@ -2,6 +2,7 @@ import { ITodo } from "../types";
 //import { ITodoList } from "../types";
 import TodoEdit from "./TodoEdit";
 
+
 interface ITodoList {
     todos: ITodo[];
     extraCss?: string;
@@ -9,10 +10,11 @@ interface ITodoList {
     onDelete: (id: Number) => void;
     onEdit: (id: Number) => void;
     handleSave: (str: string, id: Number) => void;
+    onCheck: (id: Number, str: string) => void;
 
 }
 
-const TodoList: React.FC<ITodoList> = ({ todos, extraCss, onDelete, onEdit, handleSave }) => {
+const TodoList: React.FC<ITodoList> = ({ todos, extraCss, onDelete, onEdit, handleSave, onCheck }) => {
     function handleDelete(id: Number) {
         console.log(id);
         onDelete(id);
@@ -24,7 +26,27 @@ const TodoList: React.FC<ITodoList> = ({ todos, extraCss, onDelete, onEdit, hand
     function handleSaveinList(newText: string, id: Number) {
         handleSave(newText, id);
     }
+    // function handleCheck(id: Number) {
+    //     console.log(id);
+    //     const indextoCheck = todos.findIndex((t) => t.id == id);
+    //     const Checktodos = [...todos]
+    //     Checktodos[indextoCheck] = {
+    //         ...Checktodos[indextoCheck],
+    //         isDone: true,
+    //     }
 
+
+
+
+    // }
+    function handleCheck(e: React.ChangeEvent<HTMLInputElement>, id: Number) {
+
+        if (e.target.checked) {
+            onCheck(id, "done");
+        } else {
+            onCheck(id, "undone");
+        }
+    }
     return (
         <div className={extraCss}>
             {todos.map((t) => (<div key={t.id.toString()}>{
@@ -33,9 +55,10 @@ const TodoList: React.FC<ITodoList> = ({ todos, extraCss, onDelete, onEdit, hand
                 </div> : <>
                     <div key={t.id.toString()}>
                         <label>
-                            <input type="checkbox" />
-                            <span></span>
-                            {t.text}
+                            <input type="checkbox" onChange={(e) => handleCheck(e, t.id)} />
+                            {t.isDone ? <span className="line">{t.text}</span> : <span>{t.text}</span>}
+                            {/* // <span>{t.text}</span> */}
+
                         </label>
                         <button onClick={() => handleDelete(t.id)}>Delete</button>
 
