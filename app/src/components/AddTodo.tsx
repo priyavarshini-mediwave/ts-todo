@@ -17,9 +17,12 @@ const AddTodo: React.FC<IAddTodo> = ({ onTodoAdd }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="addtodo"><strong>Todos : </strong></label>
       <input
         type="text"
         value={text}
+        name="addtodo"
+        placeholder="Enter works and press enter"
         onChange={(e) => setText(e.target.value)}
       />
     </form>

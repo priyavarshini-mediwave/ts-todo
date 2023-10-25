@@ -79,8 +79,8 @@ function App() {
   }
 
   return (
-    <div>
-      <h1>my todos</h1>
+    <div className="App-wrap">
+      <h1>My todos</h1>
       <AddTodo onTodoAdd={onTodoAdd} />
       <TodoList todos={todos} extraCss="text-bold" onDelete={onDelete} onEdit={onEdit} handleSave={onSave} onCheck={onCheck} />
     </div>

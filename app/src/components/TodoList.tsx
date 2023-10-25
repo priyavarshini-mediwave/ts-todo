@@ -48,12 +48,13 @@ const TodoList: React.FC<ITodoList> = ({ todos, extraCss, onDelete, onEdit, hand
         }
     }
     return (
-        <div className={extraCss}>
-            {todos.map((t) => (<div key={t.id.toString()}>{
-                t.isEdit ? <div key={t.id.toString()}>
+        <div className="output"  >
+            <h3>Your Works</h3>
+            {todos.map((t) => (<div key={t.id.toString()} >{
+                t.isEdit ? <div key={t.id.toString()} className="output-edited">
                     <TodoEdit handleSave={handleSaveinList} todo={t} />
                 </div> : <>
-                    <div key={t.id.toString()}>
+                    <div key={t.id.toString()} className="output-unedited">
                         <label>
                             <input type="checkbox" onChange={(e) => handleCheck(e, t.id)} />
                             {t.isDone ? <span className="line">{t.text}</span> : <span>{t.text}</span>}
