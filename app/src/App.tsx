@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ITodo } from "./types";
 
@@ -8,7 +8,22 @@ import "./App.css"
 
 function App() {
   // const [name, setName] = useState("ram");
-  let [todos, setTodos] = useState<ITodo[]>([]);
+  const initialtodos = getFromLocal()
+  let [todos, setTodos] = useState<ITodo[]>(initialtodos);
+  useEffect(() => {
+    saveToLocal(todos)
+  }, [todos])
+
+  function saveToLocal(todos: ITodo[]) {
+    localStorage.setItem("todos-ts", JSON.stringify(todos))
+  }
+  function getFromLocal() {
+    const getTodos = localStorage.getItem("todos-ts")
+    if (getTodos) {
+      return JSON.parse(getTodos)
+    }
+    return []
+  }
 
   function onTodoAdd(str: string) {
     const obj: ITodo = {
