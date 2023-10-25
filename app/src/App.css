@@ -47,12 +47,12 @@
   margin: 30px auto;
   max-width: 500px;
   padding: 20px;
-  background-image: linear-gradient(
+  background-color: #fba1b7;
+  /* background-image: linear-gradient(
     to bottom right,
-
-    rgb(179, 202, 144),
-    rgb(182, 209, 147)
-  );
+    /* 
+    rgb(176, 230, 95), */ /* rgb(182, 209, 147) */
+  /* ); */
   border-radius: 15px;
 }
 .output {
@@ -60,7 +60,8 @@
   padding: 15px;
 
   border-radius: 15px;
-  background-image: linear-gradient(to bottom right, #ebe2d1, white);
+  /* background-image: linear-gradient(to bottom right, #ebe2d1, white); */
+  background-color: #ffd1da;
 }
 .output-unedited {
   display: grid;

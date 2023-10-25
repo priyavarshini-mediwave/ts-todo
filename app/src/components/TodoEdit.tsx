@@ -32,6 +32,7 @@ const TodoEdit: React.FC<ITodoEdit> = ({ handleSave, todo }) => {
                 type="text"
                 value={newText}
                 onChange={(e) => setnewText(e.target.value)}
+                required
             />
             <button>Save Changes</button>
             {/* <button onClick={() => onEditSubmit(newText, todo.id)}>Save Changes</button> */}
